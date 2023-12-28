@@ -113,7 +113,7 @@ export default function Homework2() {
                     </td>
                   </tr>
                 );
-              })}{" "}
+              })}
             </tbody>
           </table>
         </div>
