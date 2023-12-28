@@ -99,6 +99,7 @@ export default function Homework2() {
                     <td>{item.lastname}</td>
                     <td>{item.phone}</td>
                     <td>
+                      <h6>{item.status ? "True" : "False"}</h6>
                       <input type="checkbox"  onClick={()=>check(index)} checked={item.status}/>
                     </td>
                     <td>
