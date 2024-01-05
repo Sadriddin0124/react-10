@@ -10,6 +10,9 @@ export default function Menu() {
         <Link to="/homework2" className="btn btn-primary m-4">
           Homework 2
         </Link>
+        <Link to="/homework3" className="btn btn-primary m-4">
+          Homework 3
+        </Link>
       </div>
     </div>
   );

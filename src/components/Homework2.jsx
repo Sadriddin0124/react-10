@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserMinus } from "@fortawesome/free-solid-svg-icons";
+import ModalApp from "./ModalApp";
 export default function Homework2() {
   const [users, setUsers] = useState([
     {
@@ -28,9 +29,7 @@ export default function Homework2() {
       count: 0,
     },
   ]);
-  const [firstname, setFirstname] = useState('')
-  const [lastname, setLastname] = useState('')
-  const [phone, setPhone] = useState('')
+  const [visible, setVisible] = useState(false)
   const increase =(index)=> {
     users[index].count += 1
     setUsers([...users])
@@ -48,28 +47,7 @@ export default function Homework2() {
       setUsers([...users])
     }
   }
-  const handleFirstname =(e)=> {
-    let result = e.target.value
-    setFirstname(result)
-    console.log(result);
-  }
-  const handleLastname =(e)=> {
-    setLastname(e.target.value)
-  }
-  const handlePhone =(e)=> {
-    setPhone(e.target.value)
-  }
-  const addUser =()=> {
-    let newUser = {
-      id: users.length + 1,
-      firstname: firstname,
-      lastname: lastname,
-      phone: phone,
-      status: false,
-      count: 0
-    }
-    setUsers([...users, {...newUser}])
-  }
+  
   const removeUser =(index)=> {
     users.splice(index, 1)
     setUsers([...users])
@@ -77,7 +55,9 @@ export default function Homework2() {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-8  mt-5">
+        <div className="col-8 offset-2 mt-5">
+          <ModalApp visible={visible} toggle={()=>setVisible(false)} users={users} setUsers={setUsers}/>
+          <button className="btn btn-success" onClick={()=>setVisible(true)}>Add</button>
           <table className="table table-bordered table-hovered my-3">
             <thead>
               <tr>
@@ -118,13 +98,7 @@ export default function Homework2() {
             </tbody>
           </table>
         </div>
-        <div className="col-4 mt-5">
-          <h1>Add new User</h1>
-          <input type="text" className="form-control my-3" placeholder="Firstname" onChange={handleFirstname}/>
-          <input type="text" className="form-control my-3" placeholder="Lastname" onChange={handleLastname}/>
-          <input type="text" className="form-control my-3" placeholder="Phone number" onChange={handlePhone}/>
-          <button className="btn btn-success" onClick={addUser}>Add new user</button>
-        </div>
+       
       </div>
     </div>
   );
